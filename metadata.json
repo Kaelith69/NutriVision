@@ -1,0 +1,7 @@
+{
+  "name": "NutriVision AI",
+  "description": "A sophisticated vision-based nutrition analysis system that uses Gemini AI to identify food from photos and calculate precise metabolic targets.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
