@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --safe-top: env(safe-area-inset-top);
+    --safe-bottom: env(safe-area-inset-bottom);
+  }
+  
+  body {
+    @apply antialiased text-slate-900 bg-slate-50 selection:bg-blue-100;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+
+  /* Custom Scrollbar Utilities */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer components {
+  .btn-tactical {
+    @apply transition-all duration-200 cubic-bezier(0.4, 0, 0.2, 1) active:scale-96 selection:bg-transparent;
+  }
+  
+  .scanner-line {
+    @apply h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent shadow-[0_0_20px_#2563eb] animate-scan;
+  }
+
+  .bg-grid {
+    background-image: linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px);
+    background-size: 24px 24px;
+    @apply animate-grid-pulse;
+  }
+}
+
+/* Utilities that might not be covered by Tailwind */
+.cubic-bezier {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

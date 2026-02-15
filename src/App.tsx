@@ -4,12 +4,12 @@ import { UserProfile, MealLog } from './types';
 import OnboardingForm from './components/OnboardingForm';
 import Dashboard from './components/Dashboard';
 import Settings from './components/Settings';
-import { Layout } from './components/Layout';
+import { AppLayout } from './components/Layout';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<'dashboard' | 'settings'>('dashboard');
-  
+
   const [userProfile, setUserProfile] = useState<UserProfile | null>(() => {
     const saved = localStorage.getItem('nutrivision_profile');
     try {
@@ -112,7 +112,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <Layout 
+    <AppLayout
       onExport={userProfile ? handleExportData : undefined}
       onNavigate={setView}
       currentView={view}
@@ -121,10 +121,10 @@ const App: React.FC = () => {
       {!userProfile ? (
         <OnboardingForm onComplete={handleUpdateProfile} />
       ) : view === 'settings' ? (
-        <Settings 
-          profile={userProfile} 
-          onUpdate={handleUpdateProfile} 
-          onBack={() => setView('dashboard')} 
+        <Settings
+          profile={userProfile}
+          onUpdate={handleUpdateProfile}
+          onBack={() => setView('dashboard')}
           onLogout={() => {
             if (confirm("Reset all local data?")) {
               localStorage.clear();
@@ -133,9 +133,9 @@ const App: React.FC = () => {
           }}
         />
       ) : (
-        <Dashboard 
-          profile={userProfile} 
-          mealLogs={mealLogs} 
+        <Dashboard
+          profile={userProfile}
+          mealLogs={mealLogs}
           onAddMeal={handleAddMeal}
           onUpdateMeal={handleUpdateMeal}
           onDeleteMeal={handleDeleteMeal}
@@ -143,7 +143,7 @@ const App: React.FC = () => {
           onLogWater={handleLogWater}
         />
       )}
-    </Layout>
+    </AppLayout>
   );
 };
 
