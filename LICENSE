@@ -1,0 +1,36 @@
+MIT LICENSE (TACTICAL EDITION)
+==============================
+
+**Authorized Personnel**: [Sayanth / Kaelith69]
+**Clearance Level**: UNCLASSIFIED / OPEN SOURCE
+
+---
+
+### THE "OPERATIONAL USAGE" AGREEMENT
+
+Permission is hereby granted, free of charge, to any entity (human, cyborg, or sentient AI) obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to:
+
+1.  **USE** it to track calories, macros, or the nutritional value of MREs.
+2.  **COPY** it to your own secure servers.
+3.  **MODIFY** it (e.g., adding a "Pizza Mode").
+4.  **MERGE** it with other tactical systems.
+5.  **PUBLISH** fork versions (as long as they look cool).
+6.  **SUBLICENSE** it (but why would you charge for freedom?).
+
+Subject to the following conditions:
+
+### ⚠️ THE "DON'T BLAME US" CLAUSE
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+### 🛑 TACTICAL DISCLAIMERS
+
+1.  **NO MEDICAL ADVICE**: This software is code, not a doctor. If the AI tells you to eat 5000 calories of pure lard, do not do it. Use common sense.
+2.  **DATA LOSS**: If your local `localStorage` gets wiped by a browser update, we accept no responsibility for your lost "streak."
+3.  **GLUTTONY**: We remain neutral in the war against donuts.
+
+---
+
+*> By running `npm install`, you acknowledge that you are responsible for your own metabolic destiny.*
