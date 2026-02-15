@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard';
 import Settings from './components/Settings';
 import Analytics from './components/Analytics';
 import { AppLayout } from './components/Layout';
+import { getLocalISODate } from './utils/dateUtils';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -69,8 +70,9 @@ const App: React.FC = () => {
     setMealLogs(prev => prev.map(m => m.id === meal.id ? meal : m));
   };
 
+  // ... (in handleLogWater) ...
   const handleLogWater = (amount: number) => {
-    const date = new Date().toISOString().split('T')[0];
+    const date = getLocalISODate();
     setWaterLogs(prev => ({
       ...prev,
       [date]: (prev[date] || 0) + amount
@@ -146,7 +148,7 @@ const App: React.FC = () => {
           onAddMeal={handleAddMeal}
           onUpdateMeal={handleUpdateMeal}
           onDeleteMeal={handleDeleteMeal}
-          waterAmount={waterLogs[new Date().toISOString().split('T')[0]] || 0}
+          waterAmount={waterLogs[getLocalISODate()] || 0}
           onLogWater={handleLogWater}
         />
       )}

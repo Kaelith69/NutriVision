@@ -8,6 +8,7 @@ import { TacticalCard } from './ui/TacticalCard';
 import { TacticalButton } from './ui/TacticalButton';
 import { TacticalBadge } from './ui/TacticalBadge';
 import { Activity, Droplet, Zap, Utensils, Camera, Plus, TrendingUp, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { getStartOfDay, getLocalISODate } from '../utils/dateUtils';
 
 interface DashboardProps {
   profile: UserProfile;
@@ -31,7 +32,9 @@ const Dashboard: React.FC<DashboardProps> = ({
   const [showCamera, setShowCamera] = useState(false);
   const [selectedMeal, setSelectedMeal] = useState<MealLog | null>(null);
 
-  const todayStart = new Date().setHours(0, 0, 0, 0);
+  // ... (inside component) ...
+
+  const todayStart = getStartOfDay();
   const todaysLogs = useMemo(() => mealLogs.filter(log => log.timestamp >= todayStart), [mealLogs, todayStart]);
 
   const stats = useMemo(() => {

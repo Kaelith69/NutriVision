@@ -53,6 +53,8 @@ export const calculateMacroTargets = (tdee: number, weightKg: number) => {
 
   const proteinCals = proteinGrams * 4;
   const fatCals = fatGrams * 9;
+
+  // Safety Guard: Clamp remaining calories to 0 to prevent negative carbs
   const remainingCals = Math.max(0, tdee - (proteinCals + fatCals));
   const carbGrams = Math.round(remainingCals / 4);
 

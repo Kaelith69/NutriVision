@@ -1,5 +1,6 @@
 import { MealLog, UserProfile, FoodItem } from '../types';
 import { calculateTDEE, calculateMacroTargets, calculateWaterTarget } from './metabolicService';
+import { getLocalISODate, getStartOfDay, getEndOfDay } from '../utils/dateUtils';
 
 export interface DailySummary {
     date: string;
@@ -33,17 +34,18 @@ export const getDailySummaries = (
     days: number = 7
 ): DailySummary[] => {
     const summaries: DailySummary[] = [];
-    const now = new Date();
+    const now = new Date(); // Local time reference
 
     for (let i = 0; i < days; i++) {
         const d = new Date(now);
         d.setDate(d.getDate() - i);
-        const dateStr = d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
-        const dateKey = d.toISOString().split('T')[0]; // Matches water log key format
 
-        // Filter meals for this day
-        const dayStart = new Date(d.setHours(0, 0, 0, 0)).getTime();
-        const dayEnd = new Date(d.setHours(23, 59, 59, 999)).getTime();
+        const dateStr = d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+        const dateKey = getLocalISODate(d); // Use standardized local key
+
+        // Filter meals for this day using local start/end
+        const dayStart = getStartOfDay(d);
+        const dayEnd = getEndOfDay(d);
 
         const dayMeals = mealLogs.filter(log => log.timestamp >= dayStart && log.timestamp <= dayEnd);
 
@@ -89,12 +91,15 @@ export const generateWeeklyReport = (
         water: acc.water + s.waterIntake
     }), { cals: 0, pro: 0, fat: 0, carb: 0, water: 0 });
 
+    // Safety: Prevent division by zero
+    const divisor = distinctDaysWithData > 0 ? distinctDaysWithData : 1;
+
     const avgs = {
-        cals: totals.cals / distinctDaysWithData,
-        pro: totals.pro / distinctDaysWithData,
-        fat: totals.fat / distinctDaysWithData,
-        carb: totals.carb / distinctDaysWithData,
-        water: totals.water / distinctDaysWithData
+        cals: totals.cals / divisor,
+        pro: totals.pro / divisor,
+        fat: totals.fat / divisor,
+        carb: totals.carb / divisor,
+        water: totals.water / divisor
     };
 
     // Scientific Insights Engine
