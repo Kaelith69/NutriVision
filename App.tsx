@@ -1,25 +1,46 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { UserProfile, MealLog, WaterLog } from './types';
+import { UserProfile, MealLog } from './types';
 import OnboardingForm from './components/OnboardingForm';
 import Dashboard from './components/Dashboard';
+import Settings from './components/Settings';
 import { Layout } from './components/Layout';
 
 const App: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+  const [view, setView] = useState<'dashboard' | 'settings'>('dashboard');
+  
   const [userProfile, setUserProfile] = useState<UserProfile | null>(() => {
     const saved = localStorage.getItem('nutrivision_profile');
-    return saved ? JSON.parse(saved) : null;
+    try {
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      return null;
+    }
   });
 
   const [mealLogs, setMealLogs] = useState<MealLog[]>(() => {
-    const saved = localStorage.getItem('nutrivision_logs');
-    return saved ? JSON.parse(saved) : [];
+    const saved = localStorage.getItem('nutrivision_meals');
+    try {
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
   });
 
   const [waterLogs, setWaterLogs] = useState<Record<string, number>>(() => {
     const saved = localStorage.getItem('nutrivision_water');
-    return saved ? JSON.parse(saved) : {};
+    try {
+      return saved ? JSON.parse(saved) : {};
+    } catch (e) {
+      return {};
+    }
   });
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (userProfile) {
@@ -28,14 +49,14 @@ const App: React.FC = () => {
   }, [userProfile]);
 
   useEffect(() => {
-    localStorage.setItem('nutrivision_logs', JSON.stringify(mealLogs));
+    localStorage.setItem('nutrivision_meals', JSON.stringify(mealLogs));
   }, [mealLogs]);
 
   useEffect(() => {
     localStorage.setItem('nutrivision_water', JSON.stringify(waterLogs));
   }, [waterLogs]);
 
-  const handleOnboardingComplete = (profile: UserProfile) => {
+  const handleUpdateProfile = (profile: UserProfile) => {
     setUserProfile(profile);
   };
 
@@ -43,12 +64,8 @@ const App: React.FC = () => {
     setMealLogs(prev => [meal, ...prev]);
   };
 
-  const handleUpdateMeal = (updatedMeal: MealLog) => {
-    setMealLogs(prev => prev.map(m => m.id === updatedMeal.id ? updatedMeal : m));
-  };
-
-  const handleDeleteMeal = (id: string) => {
-    setMealLogs(prev => prev.filter(m => m.id !== id));
+  const handleUpdateMeal = (meal: MealLog) => {
+    setMealLogs(prev => prev.map(m => m.id === meal.id ? meal : m));
   };
 
   const handleLogWater = (amount: number) => {
@@ -59,90 +76,62 @@ const App: React.FC = () => {
     }));
   };
 
+  const handleDeleteMeal = (id: string) => {
+    setMealLogs(prev => prev.filter(m => m.id !== id));
+  };
+
   const handleExportData = useCallback(() => {
     if (!userProfile) return;
+    const headers = ["Timestamp", "Category", "Item", "Calories", "Protein", "Carbs", "Fat"];
+    const rows = mealLogs.map(log => [
+      new Date(log.timestamp).toISOString(),
+      "MEAL",
+      log.items.map(i => i.name).join("; "),
+      log.totalCalories,
+      log.totalProtein,
+      log.totalCarbs,
+      log.totalFat
+    ]);
 
-    const headers = ["Timestamp", "Category", "Item/Attribute", "Value", "Calories", "Protein (g)", "Carbs (g)", "Fat (g)", "Verification"];
-    const rows: (string | number)[][] = [];
-
-    // User Profile
-    const p = userProfile;
-    const nowStr = new Date().toISOString();
-    rows.push([nowStr, "PROFILE", "Age", p.age, "", "", "", "", ""]);
-    rows.push([nowStr, "PROFILE", "Sex", p.sex, "", "", "", "", ""]);
-    rows.push([nowStr, "PROFILE", "Height (cm)", p.heightCm, "", "", "", "", ""]);
-    rows.push([nowStr, "PROFILE", "Weight (kg)", p.weightKg, "", "", "", "", ""]);
-    rows.push([nowStr, "PROFILE", "Activity Multiplier", p.activityLevel, "", "", "", "", ""]);
-    rows.push([nowStr, "PROFILE", "Daily Calorie Target", p.dailyCalorieTarget, "", "", "", "", ""]);
-
-    // Meal Logs
-    mealLogs.forEach(log => {
-      log.items.forEach(item => {
-        rows.push([
-          new Date(log.timestamp).toISOString(),
-          "MEAL",
-          item.name,
-          `${item.portionGrams}g`,
-          item.calories,
-          item.protein,
-          item.carbs,
-          item.fat,
-          item.isUserCorrected ? "USER_VERIFIED" : "AI_ESTIMATED"
-        ]);
-      });
-    });
-
-    // Water Logs
-    Object.entries(waterLogs).forEach(([date, amount]) => {
-      rows.push([
-        `${date}T00:00:00.000Z`,
-        "WATER",
-        "Hydration Intake",
-        `${amount}ml`,
-        "",
-        "",
-        "",
-        "",
-        ""
-      ]);
-    });
-
-    const csvContent = [
-      headers.join(","),
-      ...rows.map(r => r.map(val => `"${val}"`).join(","))
-    ].join("\n");
-
+    const csvContent = [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", `nutrivision_export_${new Date().toISOString().split('T')[0]}.csv`);
-    document.body.appendChild(link);
+    link.href = url;
+    link.download = "nutrivision_data.csv";
     link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  }, [userProfile, mealLogs, waterLogs]);
+  }, [userProfile, mealLogs]);
 
-  const handleReset = () => {
-    if (confirm("Clear all data and restart onboarding?")) {
-      localStorage.removeItem('nutrivision_profile');
-      localStorage.removeItem('nutrivision_logs');
-      localStorage.removeItem('nutrivision_water');
-      setUserProfile(null);
-      setMealLogs([]);
-      setWaterLogs({});
-    }
-  };
-
-  const todayDate = new Date().toISOString().split('T')[0];
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-8">
+        <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4" />
+        <p className="text-slate-400 font-black uppercase tracking-widest text-[10px]">Accessing Local Storage Matrix...</p>
+      </div>
+    );
+  }
 
   return (
     <Layout 
-      onReset={userProfile ? handleReset : undefined} 
       onExport={userProfile ? handleExportData : undefined}
+      onNavigate={setView}
+      currentView={view}
+      isLoggedIn={!!userProfile}
     >
       {!userProfile ? (
-        <OnboardingForm onComplete={handleOnboardingComplete} />
+        <OnboardingForm onComplete={handleUpdateProfile} />
+      ) : view === 'settings' ? (
+        <Settings 
+          profile={userProfile} 
+          onUpdate={handleUpdateProfile} 
+          onBack={() => setView('dashboard')} 
+          onLogout={() => {
+            if (confirm("Reset all local data?")) {
+              localStorage.clear();
+              window.location.reload();
+            }
+          }}
+        />
       ) : (
         <Dashboard 
           profile={userProfile} 
@@ -150,7 +139,7 @@ const App: React.FC = () => {
           onAddMeal={handleAddMeal}
           onUpdateMeal={handleUpdateMeal}
           onDeleteMeal={handleDeleteMeal}
-          waterAmount={waterLogs[todayDate] || 0}
+          waterAmount={waterLogs[new Date().toISOString().split('T')[0]] || 0}
           onLogWater={handleLogWater}
         />
       )}
