@@ -4,11 +4,12 @@ import { UserProfile, MealLog } from './types';
 import OnboardingForm from './components/OnboardingForm';
 import Dashboard from './components/Dashboard';
 import Settings from './components/Settings';
+import Analytics from './components/Analytics';
 import { AppLayout } from './components/Layout';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const [view, setView] = useState<'dashboard' | 'settings'>('dashboard');
+  const [view, setView] = useState<'dashboard' | 'settings' | 'analytics'>('dashboard');
 
   const [userProfile, setUserProfile] = useState<UserProfile | null>(() => {
     const saved = localStorage.getItem('nutrivision_profile');
@@ -131,6 +132,12 @@ const App: React.FC = () => {
               window.location.reload();
             }
           }}
+        />
+      ) : view === 'analytics' ? (
+        <Analytics
+          profile={userProfile}
+          mealLogs={mealLogs}
+          waterLogs={waterLogs}
         />
       ) : (
         <Dashboard

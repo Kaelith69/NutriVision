@@ -57,7 +57,9 @@ const CameraModule: React.FC<CameraModuleProps> = ({ onClose, onMealAnalyzed }) 
       const mealLog: MealLog = {
         id: crypto.randomUUID(),
         timestamp: Date.now(),
-        imageUrl: previewUrl,
+        // CRITICAL FIX: Do not store Base64 in localStorage to prevent quota crash.
+        // In a real app, upload 'base64Data' to a cloud bucket here and get a URL.
+        imageUrl: "", // Placeholder or use a generic asset URL if needed
         items,
         totalCalories,
         totalProtein,
@@ -139,8 +141,8 @@ const CameraModule: React.FC<CameraModuleProps> = ({ onClose, onMealAnalyzed }) 
                             key={obj.id}
                             onClick={() => setSelectedRef(obj)}
                             className={`px-3 py-2 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all border ${selectedRef.id === obj.id
-                                ? 'bg-slate-900 text-white border-slate-900 shadow-md'
-                                : 'bg-slate-50 text-slate-500 border-slate-200 hover:border-slate-300'
+                              ? 'bg-slate-900 text-white border-slate-900 shadow-md'
+                              : 'bg-slate-50 text-slate-500 border-slate-200 hover:border-slate-300'
                               }`}
                           >
                             {obj.label}

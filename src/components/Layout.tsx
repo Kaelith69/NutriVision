@@ -1,13 +1,13 @@
 
 import React from 'react';
 import { TacticalButton } from './ui/TacticalButton';
-import { Layout, Share2, Settings, ChevronLeft, ShieldCheck } from 'lucide-react';
+import { Layout, Share2, Settings, ChevronLeft, ShieldCheck, Activity } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
   onExport?: () => void;
-  onNavigate?: (view: 'dashboard' | 'settings') => void;
-  currentView?: 'dashboard' | 'settings';
+  onNavigate?: (view: 'dashboard' | 'settings' | 'analytics') => void;
+  currentView?: 'dashboard' | 'settings' | 'analytics';
   isLoggedIn?: boolean;
 }
 
@@ -34,6 +34,16 @@ export const AppLayout: React.FC<LayoutProps> = ({ children, onExport, onNavigat
           <div className="flex items-center gap-2 md:gap-3">
             {isLoggedIn && (
               <>
+                <TacticalButton
+                  variant={currentView === 'analytics' ? 'primary' : 'ghost'}
+                  size="sm"
+                  onClick={() => onNavigate?.('analytics')}
+                  aria-label="Analytics"
+                  className={currentView === 'analytics' ? 'shadow-blue-500/20' : ''}
+                >
+                  <Activity className="w-5 h-5" strokeWidth={2} />
+                </TacticalButton>
+
                 <TacticalButton
                   variant={currentView === 'settings' ? 'primary' : 'ghost'}
                   size="sm"
