@@ -136,7 +136,7 @@ Installable on iOS and Android. Works offline. Optimized for touch interfaces.
 
 #### Prerequisites
 *   **Node.js 18+** (The engine)
-*   **A Google Gemini API Key** (The ammunition) - [Get one here](https://makersuite.google.com/app/apikey)
+*   **A Google Gemini API Key** (The ammunition) - [Get one here](https://aistudio.google.com/app/apikey)
 
 #### Installation Steps
 
@@ -186,7 +186,7 @@ The application is deployed via GitHub Pages with automatic updates on every pus
 
 *   **The "Honesty" Bug**: The app cannot prevent you from lying about that donut. That's a hardware issue (you).
 *   **Time Travel**: If you fly across the world, your water logs might look weird for a day. We calculate based on *your* generic local day, not UTC.
-*   **Browser Compatibility**: Optimized for modern browsers (Chrome, Firefox, Safari, Edge). IE11 support was deemed a security risk.
+*   **Browser Compatibility**: Optimized for modern browsers (Chrome, Firefox, Safari, Edge). IE11 has reached end-of-life and is no longer supported.
 
 ---
 
