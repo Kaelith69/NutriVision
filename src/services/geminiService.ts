@@ -34,7 +34,7 @@ export const analyzeFoodImage = async (base64Image: string, scaleContext?: strin
   const ai = getAI();
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-1.5-flash',
       contents: {
         parts: [
           {

@@ -8,6 +8,7 @@ import { TacticalCard } from './ui/TacticalCard';
 import { TacticalButton } from './ui/TacticalButton';
 import { TacticalBadge } from './ui/TacticalBadge';
 import { Activity, Droplet, Zap, Utensils, Camera, Plus, TrendingUp, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { MealImage } from './ui/MealImage';
 import { getStartOfDay, getLocalISODate } from '../utils/dateUtils';
 
 interface DashboardProps {
@@ -151,7 +152,7 @@ const Dashboard: React.FC<DashboardProps> = ({
               <TacticalBadge variant="neutral">Target Profile Active</TacticalBadge>
             </div>
 
-            <TacticalCard className="p-8 h-[320px]">
+            <TacticalCard className="p-4 md:p-8 h-[320px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} layout="vertical" margin={{ left: 0, right: 30, top: 10, bottom: 10 }}>
                   <CartesianGrid strokeDasharray="4 4" horizontal={false} stroke="#f1f5f9" />
@@ -226,7 +227,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                         >
                           <div className="flex gap-4 items-center">
                             <div className="w-20 h-20 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-100">
-                              <img src={log.imageUrl} alt="Meal" className="w-full h-full object-cover" />
+                              <MealImage imageId={log.imageUrl || log.id} alt="Meal" className="w-full h-full object-cover" />
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex justify-between items-start mb-1">
@@ -254,7 +255,7 @@ const Dashboard: React.FC<DashboardProps> = ({
 
         <div className="space-y-8">
           {/* Hydration Matrix */}
-          <TacticalCard className="p-8 group">
+          <TacticalCard className="p-4 md:p-8 group">
             <div className="flex items-center justify-between mb-8">
               <h3 className="text-slate-900 font-black text-[10px] uppercase tracking-[0.3em] flex items-center gap-2">
                 <Droplet className="w-4 h-4 text-blue-500" />
@@ -294,7 +295,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           </TacticalCard>
 
           {/* Tactical Insight Engine */}
-          <TacticalCard className="bg-slate-950 p-8 text-white border-slate-800">
+          <TacticalCard className="bg-slate-950 p-4 md:p-8 text-white border-slate-800">
             <h3 className="text-blue-400 font-black text-[10px] uppercase tracking-[0.3em] flex items-center gap-2 mb-4">
               <AlertTriangle className="w-4 h-4" />
               Tactical Insight

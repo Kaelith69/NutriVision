@@ -7,6 +7,7 @@ import Settings from './components/Settings';
 import Analytics from './components/Analytics';
 import { AppLayout } from './components/Layout';
 import { getLocalISODate } from './utils/dateUtils';
+import { deleteImage } from './services/db';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -80,6 +81,7 @@ const App: React.FC = () => {
   };
 
   const handleDeleteMeal = (id: string) => {
+    deleteImage(id).catch(err => console.error("Failed to delete image:", err));
     setMealLogs(prev => prev.filter(m => m.id !== id));
   };
 

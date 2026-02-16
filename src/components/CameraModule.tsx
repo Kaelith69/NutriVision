@@ -5,6 +5,7 @@ import { MealLog } from '../types';
 import { TacticalButton } from './ui/TacticalButton';
 import { ScannerOverlay } from './ui/ScannerOverlay';
 import { X, Camera, Upload, AlertCircle, Check, ScanLine } from 'lucide-react';
+import { saveImage } from '../services/db';
 
 interface CameraModuleProps {
   onClose: () => void;
@@ -54,12 +55,14 @@ const CameraModule: React.FC<CameraModuleProps> = ({ onClose, onMealAnalyzed }) 
       const totalFat = items.reduce((sum, i) => sum + i.fat, 0);
       const totalCarbs = items.reduce((sum, i) => sum + i.carbs, 0);
 
+      const mealId = crypto.randomUUID();
+      // Save image to IndexedDB
+      await saveImage(mealId, previewUrl);
+
       const mealLog: MealLog = {
-        id: crypto.randomUUID(),
+        id: mealId,
         timestamp: Date.now(),
-        // CRITICAL FIX: Do not store Base64 in localStorage to prevent quota crash.
-        // In a real app, upload 'base64Data' to a cloud bucket here and get a URL.
-        imageUrl: "", // Placeholder or use a generic asset URL if needed
+        imageUrl: mealId, // Storing ID as reference for retrieval
         items,
         totalCalories,
         totalProtein,

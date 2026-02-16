@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { MealLog, FoodItem } from '../types';
+import { MealImage } from './ui/MealImage';
 import { TacticalButton } from './ui/TacticalButton';
 import { X, Trash2, Save, Activity, Scale, Flame, Utensils, Droplet, Zap } from 'lucide-react';
 
@@ -69,7 +70,7 @@ const MealDetailModal: React.FC<MealDetailModalProps> = ({ meal, onClose, onUpda
         <div className="flex-1 overflow-y-auto p-8 space-y-12 bg-slate-50/50">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="rounded-[2.5rem] overflow-hidden aspect-square bg-slate-100 shadow-inner group ring-4 ring-white">
-              <img src={meal.imageUrl} alt="Meal" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <MealImage imageId={meal.imageUrl || meal.id} alt="Meal" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             </div>
 
             <div className="space-y-6">
