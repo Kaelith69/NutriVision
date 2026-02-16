@@ -4,7 +4,8 @@
 
 ![NutriVision Tactical Interface](https://img.shields.io/badge/Status-OPERATIONAL-emerald?style=for-the-badge)
 ![Tech Stack](https://img.shields.io/badge/Core-REACT_18-blue?style=for-the-badge)
-![AI Model](https://img.shields.io/badge/AI-GEMINI_1.5-violet?style=for-the-badge)
+![AI Model](https://img.shields.io/badge/AI-GEMINI_1.5_FLASH-violet?style=for-the-badge)
+![Storage](https://img.shields.io/badge/Storage-INDEXED_DB-orange?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-TACTICAL_MIT-slate?style=for-the-badge)
 
 ## 📡 Mission Briefing
@@ -33,7 +34,7 @@ $$
 Dehydration is the enemy of performance. Our dynamic water target logic isn't "drink 8 glasses."
 *   **Base**: 35ml per kg of bodyweight.
 *   **Activity Modifier**: We add ~500ml for every tier of activity above "couch potato."
-*   *Result*: A hydration target that actually makes sense for your physiology.
+*   **Result**: A hydration target that actually makes sense for your physiology.
 
 ### 3. Macro Partitioning (The Protein Protocol)
 *   **Protein**: Hard-locked to **1.8g/kg**. Why? Because muscle is expensive to build and cheap to lose. We protect the asset.
@@ -42,9 +43,9 @@ Dehydration is the enemy of performance. Our dynamic water target logic isn't "d
 
 ---
 
-## 🤖 The AI (Google Gemini 1.5)
+## 🤖 The AI (Google Gemini 1.5 Flash)
 
-We utilize the **Google Gemini 1.5** model via the Generative AI SDK.
+We utilize the **Google Gemini 1.5 Flash** model via the Generative AI SDK for rapid, low-latency identification.
 
 *   **Visual Recognition**: We don't just "see" food. We decompose the plate volumetrically.
 *   **Context Awareness**: The AI understands "a slice of pizza" vs "a WHOLE pizza."
@@ -65,71 +66,73 @@ graph TD
     C -->|Thinking...| D[JSON Extraction]
     D -->|Parsed Macros| E[Validation Layer]
     E -->|Sanitized Data| F[LocalStorage DB]
-    F -->|Aggregated Logs| G[Analytics Dashboard]
-    G -->|Insights| H[User Shame/Pride]
+    E -->|Image Data| G[IndexedDB Blob Store]
+    F & G -->|Aggregated Logs| H[Analytics Dashboard]
+    H -->|Insights| I[User Shame/Pride]
 ```
 
 ### 🔐 Zero-Server Architecture (Privacy First)
 We don't want your data. In fact, we're scared of it.
-*   **All Data** lives in your browser's `LocalStorage`.
+*   **Metadata** lives in `LocalStorage`.
+*   **Heavy Assets (Images)** live in `IndexedDB` (Crash-proof persistence).
 *   **No Backend**. No cloud database.
-*   **Crash Proofing**: We strictly *do not* save heavy images to storage (that crashes apps). We only save the metadata.
 
 ---
 
 ## 🛠️ Features (The Arsenal)
 
-### 📲 Mobile PWA (Field Ready)
+### 📲 Mobile Field Ready (PWA)
 Installable on iOS and Android. Works offline.
+*   **Stealth Navigation**: Hidden hamburger menu on mobile to maximize tactical dashboard real estate.
 *   **Service Workers**: Caches assets so the app loads faster than you can say "is this gluten-free?"
 *   **Tactical Icon**: A shield logo that looks cool next to your banking apps.
+
+### 📸 Persistent Visual Evidence
+*   **IndexedDB Storage**: We store your meal photos locally without bloating your browser memory.
+*   **Proof of Consumption**: Your logs keep the receipts.
 
 ### 📊 Analytics & Insights
 *   **14-Day Trend Analysis**: See if you're actually losing weight or just fluctuating water.
 *   **System Alerts**: "⚠️ Protein deficiency detected." "⚠️ Caloric surplus critical."
 *   **CSV Export**: Download your data to Excel and make pivot tables, you nerd.
 
-### 🎨 Tactical UI System
-*   **Dark Mode Only**: Because light attracts enemies.
-*   **Monospace Data**: For that "hacker mainframe" aesthetic.
-*   **Haptic Feedback (Visual)**: Buttons that feel distinct.
-
 ---
 
 ## 🚀 Deployment
 
-### Prerequisites
-*   Node.js 18+ (The engine)
-*   A Google Gemini API Key (The ammunition)
+We provide multiple deployment vectors. Choose your insertion point.
 
-### Installation
-1.  **Clone the Repo**:
+### Option 1: Instant Strike (Surge.sh)
+Deploy in 30 seconds to a free public URL.
+```bash
+./deploy_online.sh
+```
+
+### Option 2: Local Base (Development)
+1.  **Clone & Install**:
     ```bash
     git clone https://github.com/your-username/nutrivision.git
     cd nutrivision
-    ```
-
-2.  **Install Supplies**:
-    ```bash
     npm install
     ```
-
-3.  **Arm the System**:
-    Create a `.env` file:
-    ```env
-    VITE_GEMINI_API_KEY=your_secret_key_here
-    ```
-
-4.  **Launch**:
+2.  **Arm the System**:
+    Create `.env`: `VITE_GEMINI_API_KEY=your_key`
+3.  **Launch**:
     ```bash
     npm run dev
     ```
+
+### Option 3: Permanent Forward Operating Base
+*   **GitHub Pages**: Push to `main`. The included workflow (`.github/workflows/production.yml`) handles the rest.
+*   **Firebase**: `npm install -g firebase-tools` -> `firebase deploy`.
+*   **Vercel / Netlify**: Connect your repo and it just works (Configs included).
 
 ---
 
 ## ⚠️ Known Issues
 *   **The "Honesty" Bug**: The app cannot prevent you from lying about that donut. That's a hardware issue (you).
 *   **Time Travel**: If you fly across the world, your water logs might look weird for a day. We calculate based on *your* generic local day, not UTC.
+*   **Blank Screen**: If you see a blank screen on deployment, ensure your `.env` variables are set correctly in your hosting provider's dashboard.
 
 ---
 

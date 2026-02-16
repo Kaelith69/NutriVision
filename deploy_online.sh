@@ -19,8 +19,14 @@ echo "NOTE: If this is your first time, you will be asked to create an account (
 echo "Press ENTER to continue..."
 read
 
-# Use npx to run surge without installing it globally
-# We point it to the 'dist' folder
-npx surge ./dist
+# Generate a unique domain to avoid "Permission Denied" errors
+# Uses timestamp to ensure uniqueness
+TIMESTAMP=$(date +%s)
+DOMAIN="nutrivision-${TIMESTAMP}.surge.sh"
+
+echo "Using unique domain: ${DOMAIN}"
+
+# Use npx to run surge with the custom domain
+npx surge ./dist --domain ${DOMAIN}
 
 echo "✅ Deployment Process Complete!"
