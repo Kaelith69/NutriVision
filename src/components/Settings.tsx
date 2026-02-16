@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { UserProfile, ActivityLevel } from '../types';
 import { TacticalButton } from './ui/TacticalButton';
-import { Settings as SettingsIcon, Save, LogOut, ArrowLeft, Ruler, Weight, Activity, User } from 'lucide-react';
+import { Settings as SettingsIcon, Save, LogOut, ArrowLeft, Ruler, Weight, Activity, User, Key } from 'lucide-react';
 
 interface SettingsProps {
   profile: UserProfile;
@@ -13,8 +13,14 @@ interface SettingsProps {
 
 const Settings: React.FC<SettingsProps> = ({ profile, onUpdate, onBack, onLogout }) => {
   const [data, setData] = useState(profile);
+  const [apiKey, setApiKey] = useState(localStorage.getItem('gemini_api_key') || '');
 
   const handleSave = () => {
+    if (apiKey) {
+      localStorage.setItem('gemini_api_key', apiKey);
+    } else {
+      localStorage.removeItem('gemini_api_key');
+    }
     onUpdate(data);
     onBack();
   };
@@ -72,6 +78,20 @@ const Settings: React.FC<SettingsProps> = ({ profile, onUpdate, onBack, onLogout
               <option value={ActivityLevel.EXTREMELY_ACTIVE}>Extremely Active: Hard Daily Manual Output</option>
             </select>
           </div>
+        </div>
+
+        <div className="space-y-2 relative z-10 border-t border-slate-100 pt-6">
+          <label className={labelClass}><Key className="w-3 h-3 text-blue-500" /> API Key (Optional)</label>
+          <input
+            type="password"
+            className={inputClass}
+            value={apiKey}
+            onChange={e => setApiKey(e.target.value)}
+            placeholder="Enter your Gemini API key"
+          />
+          <p className="text-[10px] text-slate-400 font-medium ml-2">
+            Leave empty to use the default system key. Your key is stored locally on your device.
+          </p>
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 pt-6 relative z-10">

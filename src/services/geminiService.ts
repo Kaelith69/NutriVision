@@ -2,7 +2,10 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { FoodItem } from "../types";
 
-const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+const getAI = () => {
+  const apiKey = localStorage.getItem('gemini_api_key') || process.env.API_KEY || "";
+  return new GoogleGenAI({ apiKey });
+};
 
 const foodAnalysisSchema = {
   type: Type.OBJECT,
