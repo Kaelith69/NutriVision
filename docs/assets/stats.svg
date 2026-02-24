@@ -1,0 +1,47 @@
+<svg width="720" height="260" viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="260" fill="#0F172A" rx="12"/>
+
+  <!-- Title -->
+  <text x="360" y="32" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#10B981" text-anchor="middle" letter-spacing="3">BY THE NUMBERS</text>
+  <line x1="200" y1="42" x2="520" y2="42" stroke="#10B981" stroke-width="1" opacity="0.4"/>
+
+  <!-- Stat 1: 0 Servers -->
+  <rect x="22"  y="58" width="126" height="128" fill="#1E293B" rx="10" stroke="#0B8F87" stroke-width="1.5"/>
+  <text x="85"  y="104" font-family="Arial, sans-serif" font-size="48" fill="#0B8F87" text-anchor="middle" font-weight="bold">0</text>
+  <text x="85"  y="126" font-family="Arial, sans-serif" font-size="11" fill="white"   text-anchor="middle" font-weight="bold">SERVERS</text>
+  <text x="85"  y="142" font-family="Arial, sans-serif" font-size="9"  fill="#64748B" text-anchor="middle">Required to run</text>
+  <text x="85"  y="162" font-family="Arial, sans-serif" font-size="20" fill="#0B8F87" text-anchor="middle">&#x2601;&#xFE0F;&#x1F6AB;</text>
+
+  <!-- Stat 2: 100% Local -->
+  <rect x="162" y="58" width="126" height="128" fill="#1E293B" rx="10" stroke="#0B8F87" stroke-width="1.5"/>
+  <text x="225" y="98"  font-family="Arial, sans-serif" font-size="36" fill="#0B8F87" text-anchor="middle" font-weight="bold">100%</text>
+  <text x="225" y="118" font-family="Arial, sans-serif" font-size="11" fill="white"   text-anchor="middle" font-weight="bold">LOCAL DATA</text>
+  <text x="225" y="134" font-family="Arial, sans-serif" font-size="9"  fill="#64748B" text-anchor="middle">No leaks. Ever.</text>
+  <text x="225" y="162" font-family="Arial, sans-serif" font-size="20" fill="#0B8F87" text-anchor="middle">&#x1F512;</text>
+
+  <!-- Stat 3: 6 Macros -->
+  <rect x="302" y="58" width="126" height="128" fill="#1E293B" rx="10" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="365" y="104" font-family="Arial, sans-serif" font-size="48" fill="#2563EB" text-anchor="middle" font-weight="bold">6</text>
+  <text x="365" y="126" font-family="Arial, sans-serif" font-size="11" fill="white"   text-anchor="middle" font-weight="bold">MACROS</text>
+  <text x="365" y="142" font-family="Arial, sans-serif" font-size="8"  fill="#64748B" text-anchor="middle">Cal · Prot · Fat · Carbs</text>
+  <text x="365" y="153" font-family="Arial, sans-serif" font-size="8"  fill="#64748B" text-anchor="middle">Fiber · Sodium</text>
+  <text x="365" y="172" font-family="Arial, sans-serif" font-size="20" fill="#2563EB" text-anchor="middle">&#x1F9EC;</text>
+
+  <!-- Stat 4: 14 Days -->
+  <rect x="442" y="58" width="126" height="128" fill="#1E293B" rx="10" stroke="#10B981" stroke-width="1.5"/>
+  <text x="505" y="104" font-family="Arial, sans-serif" font-size="48" fill="#10B981" text-anchor="middle" font-weight="bold">14</text>
+  <text x="505" y="126" font-family="Arial, sans-serif" font-size="11" fill="white"   text-anchor="middle" font-weight="bold">DAY HISTORY</text>
+  <text x="505" y="142" font-family="Arial, sans-serif" font-size="9"  fill="#64748B" text-anchor="middle">Rolling analytics</text>
+  <text x="505" y="162" font-family="Arial, sans-serif" font-size="20" fill="#10B981" text-anchor="middle">&#x1F4C8;</text>
+
+  <!-- Stat 5: PWA -->
+  <rect x="582" y="58" width="116" height="128" fill="#1E293B" rx="10" stroke="#10B981" stroke-width="1.5"/>
+  <text x="640" y="92"  font-family="Arial, sans-serif" font-size="28" fill="#10B981" text-anchor="middle">&#x1F4F1;</text>
+  <text x="640" y="114" font-family="Arial, sans-serif" font-size="14" fill="#10B981" text-anchor="middle" font-weight="bold">PWA</text>
+  <text x="640" y="131" font-family="Arial, sans-serif" font-size="9"  fill="white"   text-anchor="middle">iOS &amp; Android</text>
+  <text x="640" y="145" font-family="Arial, sans-serif" font-size="9"  fill="white"   text-anchor="middle">Offline-first</text>
+  <text x="640" y="162" font-family="Arial, sans-serif" font-size="9"  fill="#64748B" text-anchor="middle">Installable</text>
+
+  <!-- Footer -->
+  <text x="360" y="220" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.3)" text-anchor="middle">Built with React 18 · TypeScript · Vite · Gemini 1.5 Flash · TailwindCSS</text>
+</svg>
