@@ -1,0 +1,61 @@
+<svg width="700" height="390" viewBox="0 0 700 390" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="barA" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0B8F87"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <linearGradient id="barB" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#0B8F87"/>
+    </linearGradient>
+  </defs>
+  <rect width="700" height="390" fill="#0F172A" rx="12"/>
+  <!-- Title -->
+  <text x="350" y="36" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#10B981" text-anchor="middle" letter-spacing="3">CAPABILITY MATRIX</text>
+  <line x1="200" y1="45" x2="500" y2="45" stroke="#10B981" stroke-width="1" opacity="0.4"/>
+
+  <!-- Row 1: AI Food Recognition 95% -->
+  <text x="215" y="82" font-family="Arial, sans-serif" font-size="12" fill="#94A3B8" text-anchor="end">AI Food Recognition</text>
+  <rect x="225" y="70" width="390" height="18" fill="rgba(255,255,255,0.05)" rx="9"/>
+  <rect x="225" y="70" width="370" height="18" fill="url(#barA)" rx="9"/>
+  <text x="625" y="83" font-family="Arial, sans-serif" font-size="11" fill="#10B981" font-weight="bold">95%</text>
+
+  <!-- Row 2: Offline PWA 100% -->
+  <text x="215" y="122" font-family="Arial, sans-serif" font-size="12" fill="#94A3B8" text-anchor="end">Offline PWA Support</text>
+  <rect x="225" y="110" width="390" height="18" fill="rgba(255,255,255,0.05)" rx="9"/>
+  <rect x="225" y="110" width="390" height="18" fill="url(#barA)" rx="9"/>
+  <text x="625" y="123" font-family="Arial, sans-serif" font-size="11" fill="#10B981" font-weight="bold">100%</text>
+
+  <!-- Row 3: Local Privacy 100% -->
+  <text x="215" y="162" font-family="Arial, sans-serif" font-size="12" fill="#94A3B8" text-anchor="end">Local-First Privacy</text>
+  <rect x="225" y="150" width="390" height="18" fill="rgba(255,255,255,0.05)" rx="9"/>
+  <rect x="225" y="150" width="390" height="18" fill="url(#barB)" rx="9"/>
+  <text x="625" y="163" font-family="Arial, sans-serif" font-size="11" fill="#10B981" font-weight="bold">100%</text>
+
+  <!-- Row 4: 14-Day Analytics 85% -->
+  <text x="215" y="202" font-family="Arial, sans-serif" font-size="12" fill="#94A3B8" text-anchor="end">14-Day Analytics</text>
+  <rect x="225" y="190" width="390" height="18" fill="rgba(255,255,255,0.05)" rx="9"/>
+  <rect x="225" y="190" width="331" height="18" fill="url(#barB)" rx="9"/>
+  <text x="625" y="203" font-family="Arial, sans-serif" font-size="11" fill="#10B981" font-weight="bold">85%</text>
+
+  <!-- Row 5: Cross-Platform 95% -->
+  <text x="215" y="242" font-family="Arial, sans-serif" font-size="12" fill="#94A3B8" text-anchor="end">Cross-Platform (iOS / Android / Web)</text>
+  <rect x="225" y="230" width="390" height="18" fill="rgba(255,255,255,0.05)" rx="9"/>
+  <rect x="225" y="230" width="370" height="18" fill="url(#barA)" rx="9"/>
+  <text x="625" y="243" font-family="Arial, sans-serif" font-size="11" fill="#10B981" font-weight="bold">95%</text>
+
+  <!-- Row 6: Zero-Server 100% -->
+  <text x="215" y="282" font-family="Arial, sans-serif" font-size="12" fill="#94A3B8" text-anchor="end">Zero-Server Architecture</text>
+  <rect x="225" y="270" width="390" height="18" fill="rgba(255,255,255,0.05)" rx="9"/>
+  <rect x="225" y="270" width="390" height="18" fill="url(#barA)" rx="9"/>
+  <text x="625" y="283" font-family="Arial, sans-serif" font-size="11" fill="#10B981" font-weight="bold">100%</text>
+
+  <!-- Row 7: Metabolic Engine 90% -->
+  <text x="215" y="322" font-family="Arial, sans-serif" font-size="12" fill="#94A3B8" text-anchor="end">Metabolic Engine (Mifflin-St Jeor)</text>
+  <rect x="225" y="310" width="390" height="18" fill="rgba(255,255,255,0.05)" rx="9"/>
+  <rect x="225" y="310" width="351" height="18" fill="url(#barB)" rx="9"/>
+  <text x="625" y="323" font-family="Arial, sans-serif" font-size="11" fill="#10B981" font-weight="bold">90%</text>
+
+  <!-- Footer -->
+  <text x="350" y="368" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.25)" text-anchor="middle">Feature completeness relative to planned v1.0 capabilities</text>
+</svg>

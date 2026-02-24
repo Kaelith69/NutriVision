@@ -1,0 +1,101 @@
+<svg width="920" height="330" viewBox="0 0 920 330" xmlns="http://www.w3.org/2000/svg">
+  <rect width="920" height="330" fill="#0F172A" rx="12"/>
+
+  <!-- Title -->
+  <text x="460" y="30" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#10B981" text-anchor="middle" letter-spacing="3">DATA FLOW DIAGRAM</text>
+  <line x1="260" y1="40" x2="660" y2="40" stroke="#10B981" stroke-width="1" opacity="0.4"/>
+
+  <!-- Step 1: User -->
+  <rect x="18" y="112" width="100" height="72" fill="#1E293B" rx="8" stroke="#0B8F87" stroke-width="2"/>
+  <text x="68" y="140" font-family="Arial, sans-serif" font-size="22" fill="#0B8F87" text-anchor="middle">&#x1F464;</text>
+  <text x="68" y="161" font-family="Arial, sans-serif" font-size="10" fill="white"   text-anchor="middle" font-weight="bold">USER</text>
+  <text x="68" y="175" font-family="Arial, sans-serif" font-size="8"  fill="#64748B" text-anchor="middle">Takes photo</text>
+  <circle cx="68" cy="99" r="10" fill="#0B8F87"/>
+  <text x="68" y="103" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">1</text>
+
+  <!-- Arrow 1->2 -->
+  <line x1="118" y1="148" x2="140" y2="148" stroke="#0B8F87" stroke-width="2"/>
+  <polygon points="137,143 147,148 137,153" fill="#0B8F87"/>
+  <text x="129" y="138" font-family="Arial, sans-serif" font-size="7" fill="#64748B" text-anchor="middle">Camera / File</text>
+
+  <!-- Step 2: Capture -->
+  <rect x="148" y="112" width="110" height="72" fill="#1E293B" rx="8" stroke="#0B8F87" stroke-width="2"/>
+  <text x="203" y="140" font-family="Arial, sans-serif" font-size="22" fill="#0B8F87" text-anchor="middle">&#x1F4F8;</text>
+  <text x="203" y="161" font-family="Arial, sans-serif" font-size="10" fill="white"   text-anchor="middle" font-weight="bold">CAPTURE</text>
+  <text x="203" y="175" font-family="Arial, sans-serif" font-size="8"  fill="#64748B" text-anchor="middle">Base64 encode</text>
+  <circle cx="203" cy="99" r="10" fill="#0B8F87"/>
+  <text x="203" y="103" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">2</text>
+
+  <!-- Arrow 2->3 -->
+  <line x1="258" y1="148" x2="280" y2="148" stroke="#2563EB" stroke-width="2"/>
+  <polygon points="277,143 287,148 277,153" fill="#2563EB"/>
+  <text x="269" y="138" font-family="Arial, sans-serif" font-size="7" fill="#64748B" text-anchor="middle">JPEG stream</text>
+
+  <!-- Step 3: Gemini AI (taller) -->
+  <rect x="288" y="96" width="130" height="100" fill="#1E293B" rx="8" stroke="#2563EB" stroke-width="2.5"/>
+  <text x="353" y="122" font-family="Arial, sans-serif" font-size="22" fill="#2563EB" text-anchor="middle">&#x1F916;</text>
+  <text x="353" y="146" font-family="Arial, sans-serif" font-size="10" fill="white"   text-anchor="middle" font-weight="bold">GEMINI AI</text>
+  <text x="353" y="161" font-family="Arial, sans-serif" font-size="8"  fill="#64748B" text-anchor="middle">Gemini 1.5 Flash</text>
+  <text x="353" y="173" font-family="Arial, sans-serif" font-size="8"  fill="#64748B" text-anchor="middle">Vision + JSON schema</text>
+  <text x="353" y="185" font-family="Arial, sans-serif" font-size="8"  fill="#64748B" text-anchor="middle">Temp: 0.1 (no guessing)</text>
+  <circle cx="353" cy="83" r="10" fill="#2563EB"/>
+  <text x="353" y="87" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">3</text>
+
+  <!-- Arrow 3->4 -->
+  <line x1="418" y1="148" x2="440" y2="148" stroke="#2563EB" stroke-width="2"/>
+  <polygon points="437,143 447,148 437,153" fill="#2563EB"/>
+  <text x="429" y="138" font-family="Arial, sans-serif" font-size="7" fill="#64748B" text-anchor="middle">Raw JSON</text>
+
+  <!-- Step 4: Validate -->
+  <rect x="448" y="112" width="115" height="72" fill="#1E293B" rx="8" stroke="#0B8F87" stroke-width="2"/>
+  <text x="505" y="140" font-family="Arial, sans-serif" font-size="22" fill="#0B8F87" text-anchor="middle">&#x26A1;</text>
+  <text x="505" y="161" font-family="Arial, sans-serif" font-size="10" fill="white"   text-anchor="middle" font-weight="bold">VALIDATE</text>
+  <text x="505" y="175" font-family="Arial, sans-serif" font-size="8"  fill="#64748B" text-anchor="middle">Type-check macros</text>
+  <circle cx="505" cy="99" r="10" fill="#0B8F87"/>
+  <text x="505" y="103" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">4</text>
+
+  <!-- Arrow 4->5 (split into two) -->
+  <line x1="563" y1="140" x2="590" y2="128" stroke="#10B981" stroke-width="1.5"/>
+  <line x1="563" y1="156" x2="590" y2="168" stroke="#10B981" stroke-width="1.5"/>
+  <text x="570" y="138" font-family="Arial, sans-serif" font-size="7" fill="#64748B">Clean</text>
+  <text x="570" y="147" font-family="Arial, sans-serif" font-size="7" fill="#64748B">data</text>
+
+  <!-- Step 5a: LocalStorage -->
+  <rect x="598" y="96" width="120" height="58" fill="#1E293B" rx="8" stroke="#10B981" stroke-width="2"/>
+  <text x="658" y="118" font-family="Arial, sans-serif" font-size="16" fill="#10B981" text-anchor="middle">&#x1F4BE;</text>
+  <text x="658" y="138" font-family="Arial, sans-serif" font-size="10" fill="white"   text-anchor="middle" font-weight="bold">LocalStorage</text>
+  <text x="658" y="149" font-family="Arial, sans-serif" font-size="8"  fill="#64748B" text-anchor="middle">Meal metadata</text>
+  <circle cx="658" cy="83" r="10" fill="#10B981"/>
+  <text x="658" y="87" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">5</text>
+
+  <!-- Step 5b: IndexedDB -->
+  <rect x="598" y="162" width="120" height="58" fill="#1E293B" rx="8" stroke="#10B981" stroke-width="2"/>
+  <text x="658" y="184" font-family="Arial, sans-serif" font-size="16" fill="#10B981" text-anchor="middle">&#x1F5BC;</text>
+  <text x="658" y="204" font-family="Arial, sans-serif" font-size="10" fill="white"   text-anchor="middle" font-weight="bold">IndexedDB</text>
+  <text x="658" y="215" font-family="Arial, sans-serif" font-size="8"  fill="#64748B" text-anchor="middle">Photo blobs</text>
+
+  <!-- Arrow 5->6 -->
+  <line x1="718" y1="126" x2="750" y2="145" stroke="#10B981" stroke-width="1.5"/>
+  <line x1="718" y1="193" x2="750" y2="171" stroke="#10B981" stroke-width="1.5"/>
+  <polygon points="746,142 756,148 747,154" fill="#10B981"/>
+
+  <!-- Step 6: Dashboard -->
+  <rect x="758" y="112" width="130" height="72" fill="#1E293B" rx="8" stroke="#10B981" stroke-width="2.5"/>
+  <text x="823" y="140" font-family="Arial, sans-serif" font-size="22" fill="#10B981" text-anchor="middle">&#x1F4CA;</text>
+  <text x="823" y="161" font-family="Arial, sans-serif" font-size="10" fill="white"   text-anchor="middle" font-weight="bold">DASHBOARD</text>
+  <text x="823" y="175" font-family="Arial, sans-serif" font-size="8"  fill="#64748B" text-anchor="middle">Insights + Analytics</text>
+  <circle cx="823" cy="99" r="10" fill="#10B981"/>
+  <text x="823" y="103" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">6</text>
+
+  <!-- Bottom note -->
+  <text x="460" y="260" font-family="Arial, sans-serif" font-size="10" fill="#334155" text-anchor="middle">&#x26A0;&#xFE0F; Only image pixels are sent to Gemini. No user profile, no stored data, no PII.</text>
+  <text x="460" y="278" font-family="Arial, sans-serif" font-size="9"  fill="rgba(255,255,255,0.2)" text-anchor="middle">Privacy-first design: image in → macros out → everything else stays local.</text>
+
+  <!-- Legend -->
+  <rect x="230" y="295" width="14" height="8" fill="#0B8F87" rx="2"/>
+  <text x="250" y="303" font-family="Arial, sans-serif" font-size="9" fill="#64748B">Local processing</text>
+  <rect x="380" y="295" width="14" height="8" fill="#2563EB" rx="2"/>
+  <text x="400" y="303" font-family="Arial, sans-serif" font-size="9" fill="#64748B">Gemini API call (image only)</text>
+  <rect x="580" y="295" width="14" height="8" fill="#10B981" rx="2"/>
+  <text x="600" y="303" font-family="Arial, sans-serif" font-size="9" fill="#64748B">Data persistence</text>
+</svg>
