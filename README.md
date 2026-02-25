@@ -29,15 +29,6 @@ Point your camera at a plate of pasta, a suspicious gas-station burrito, or a sa
 
 Built on a **zero-server architecture**: your meal history, photos, and profile live entirely on *your* device. We don't want your data. We are, in fact, allergic to it.
 
-<div align="center">
-<br/>
-
-![Developer Humor](https://media.giphy.com/media/077i6AULCXc0FKT7sp/giphy.gif)
-
-*The AI analyzing your fourth meal of the day.*
-
-<br/>
-</div>
 
 ---
 
